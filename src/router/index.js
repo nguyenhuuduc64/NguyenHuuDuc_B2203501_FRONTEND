@@ -1,4 +1,4 @@
-import { createWebHashHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 import ContactBook from "@/views/ContactBook.vue";
 
 const routes = [
@@ -9,13 +9,24 @@ const routes = [
   },
   {
     path: "/:pathMatch(.*)*",
-    name: "NotFound",
+    name: "notfound",
     component: () => import("@/views/NotFound.vue"),
+  },
+  {
+    path: "/add",
+    name: "contact.add",
+    component: () => import("@/views/ContactAdd.vue"),
+  },
+  {
+    path: "/contacts/:id",
+    name: "contact.edit",
+    component: () => import("@/views/ContactEdit.vue"),
+    props: true,
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
